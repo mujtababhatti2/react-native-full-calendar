@@ -1,7 +1,12 @@
 name: CI
+
 on:
   push:
   pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -19,3 +24,23 @@ jobs:
       - run: yarn example:cli bundle:android
       - run: yarn example:cli bundle:ios
       - run: npm pack --dry-run
+
+  publish-dev:
+    name: Publish npm development build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+      - run: corepack enable
+      - run: yarn install --immutable
+      - name: Create unique development version
+        run: npm version "$(node -p "require('./package.json').version.split('-')[0] + '-dev.' + process.env.GITHUB_RUN_ID")" --no-git-tag-version
+      - name: Publish to npm
+        run: npm publish --tag dev --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -157,6 +157,22 @@ npm pack --dry-run
 npm publish --tag beta --access public
 ```
 
+### Automated development releases
+
+Every push to `main` runs the complete CI suite and publishes a unique npm
+prerelease such as `0.1.0-dev.123456789` under the `dev` tag. Add an npm
+automation token to the GitHub repository as an Actions secret named
+`NPM_TOKEN` to enable publishing.
+
+Install the latest development build with:
+
+```sh
+npm install @mujtababhatti2/react-native-full-calendar@dev temporal-polyfill
+```
+
+Pull requests and pushes to other branches run validation without publishing.
+The `beta` and `latest` tags remain reserved for intentional releases.
+
 Before publishing, confirm that the `@mujtababhatti2` npm scope exists, the scoped name is available, and the packed tarball contains only the documented public files. See [PERFORMANCE.md](./PERFORMANCE.md) for the Android profiling procedure.
 
 The Expo app lives in `example/`. A separate generated React Native CLI app with native Android and iOS projects lives in `example-cli/`; see its README for SDK, CocoaPods, and run instructions.
