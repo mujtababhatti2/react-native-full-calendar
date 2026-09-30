@@ -141,42 +141,6 @@ way to change calendar colors.
 
 Built-in events expose useful screen-reader labels, text scaling limits, and button roles. Headers and day columns mirror when React Native's RTL setting is enabled. Custom renderers are responsible for the accessibility of their own content, while the surrounding event button retains its generated label.
 
-## Development and beta release
-
-```sh
-corepack yarn install
-corepack yarn typecheck
-corepack yarn lint
-corepack yarn test
-corepack yarn build
-corepack yarn example:expo start
-corepack yarn example:cli start
-corepack yarn example:cli bundle:android
-corepack yarn example:cli bundle:ios
-npm pack --dry-run
-npm publish --tag beta --access public
-```
-
-### Automated development releases
-
-Every push to `main` runs the complete CI suite and publishes a unique npm
-prerelease such as `0.1.0-dev.123456789` under the `dev` tag. Add an npm
-automation token to the GitHub repository as an Actions secret named
-`NPM_TOKEN` to enable publishing.
-
-Install the latest development build with:
-
-```sh
-npm install @mujtababhatti2/react-native-full-calendar@dev temporal-polyfill
-```
-
-Pull requests and pushes to other branches run validation without publishing.
-The `beta` and `latest` tags remain reserved for intentional releases.
-
-Before publishing, confirm that the `@mujtababhatti2` npm scope exists, the scoped name is available, and the packed tarball contains only the documented public files. See [PERFORMANCE.md](./PERFORMANCE.md) for the Android profiling procedure.
-
-The Expo app lives in `example/`. A separate generated React Native CLI app with native Android and iOS projects lives in `example-cli/`; see its README for SDK, CocoaPods, and run instructions.
-
 ## Beta limitations
 
 This release supports timed day and week views on Android and iOS. Month, agenda, all-day rows, drag and resize, swipe navigation, recurring-event expansion, resources, availability overlays, booking rules, and React Native Web are planned separately.
