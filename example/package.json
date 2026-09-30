@@ -1,0 +1,26 @@
+{
+  "name": "@mujtababhatti2/react-native-full-calendar-example",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo/metro-runtime": "~57.0.16",
+    "expo": "~57.0.26",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-safe-area-context": "^5.10.1",
+    "react-native-web": "~0.21.0"
+  },
+  "devDependencies": {
+    "react-native-builder-bob": "^0.43.1",
+    "react-native-monorepo-config": "^0.4.0"
+  }
+}

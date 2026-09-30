@@ -1,0 +1,139 @@
+{
+  "name": "@mujtababhatti2/react-native-full-calendar",
+  "version": "0.1.0-beta.1",
+  "description": "A customizable, timezone-aware day and week calendar for React Native",
+  "main": "./lib/module/index.js",
+  "types": "./lib/typescript/src/index.d.ts",
+  "exports": {
+    ".": {
+      "mujtababhatti2-react-native-full-calendar-source": "./src/index.ts",
+      "types": "./lib/typescript/src/index.d.ts",
+      "default": "./lib/module/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "lib",
+    "docs",
+    "README.md",
+    "LICENSE",
+    "!src/**/__tests__"
+  ],
+  "scripts": {
+    "example": "corepack yarn workspace @mujtababhatti2/react-native-full-calendar-example",
+    "example:expo": "corepack yarn workspace @mujtababhatti2/react-native-full-calendar-example",
+    "example:cli": "corepack yarn workspace @mujtababhatti2/react-native-full-calendar-cli-example",
+    "clean": "del-cli lib coverage",
+    "prepare": "bob build",
+    "build": "bob build",
+    "typecheck": "tsc",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "test": "jest --runInBand",
+    "release:beta": "npm publish --tag beta --access public"
+  },
+  "keywords": [
+    "react-native",
+    "calendar",
+    "schedule",
+    "ios",
+    "android"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mujtababhatti2/react-native-full-calendar.git"
+  },
+  "author": "Mujtaba Bhatti <ghulammujtaba908@gmail.com> (https://github.com/mujtababhatti2)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mujtababhatti2/react-native-full-calendar/issues"
+  },
+  "homepage": "https://github.com/mujtababhatti2/react-native-full-calendar#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "dependencies": {
+    "temporal-polyfill": "^0.3.0"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^2.1.0",
+    "@eslint/eslintrc": "^3.3.6",
+    "@eslint/js": "^9.39.5",
+    "@react-native/babel-preset": "0.86.2",
+    "@react-native/eslint-config": "0.86.2",
+    "@react-native/jest-preset": "0.86.3",
+    "@testing-library/react-native": "^13.3.3",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.2.0",
+    "babel-jest": "^30.2.0",
+    "del-cli": "^7.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-ft-flow": "^3.0.11",
+    "eslint-plugin-prettier": "^5.5.6",
+    "jest": "^30.2.0",
+    "prettier": "^3.9.6",
+    "react": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-builder-bob": "^0.43.1",
+    "react-test-renderer": "19.2.3",
+    "turbo": "^2.10.8",
+    "typescript": "^6.0.3"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.76"
+  },
+  "workspaces": [
+    "example",
+    "example-cli"
+  ],
+  "packageManager": "yarn@4.11.0",
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      [
+        "module",
+        {
+          "esm": true
+        }
+      ],
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  },
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "preset": "@react-native/jest-preset",
+    "watchman": false,
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/example/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)/)"
+    ]
+  },
+  "create-react-native-library": {
+    "type": "library",
+    "languages": "js",
+    "tools": [
+      "eslint",
+      "jest",
+      "lefthook",
+      "release-it"
+    ],
+    "version": "0.63.1"
+  }
+}

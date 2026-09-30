@@ -1,0 +1,24 @@
+name: Bug report
+description: Report incorrect rendering, interaction, timezone behavior, or performance
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes: {label: Description, description: What happened and what did you expect?}
+    validations: {required: true}
+  - type: input
+    id: versions
+    attributes: {label: Versions, description: Package, React Native, Expo, Android or iOS versions}
+    validations: {required: true}
+  - type: input
+    id: timezone
+    attributes: {label: Timezone and locale, placeholder: "Asia/Karachi, en-PK"}
+    validations: {required: true}
+  - type: textarea
+    id: reproduction
+    attributes: {label: Minimal reproduction, description: Include the controlled date and event timestamps with explicit offsets.}
+    validations: {required: true}
+  - type: textarea
+    id: device
+    attributes: {label: Device details, description: Device/emulator model and OS version}

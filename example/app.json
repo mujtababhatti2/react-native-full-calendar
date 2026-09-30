@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "Full Calendar Example",
+    "slug": "react-native-full-calendar-example",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {"supportsTablet": true},
+    "android": {"edgeToEdgeEnabled": true},
+    "web": {"bundler": "metro"}
+  }
+}
