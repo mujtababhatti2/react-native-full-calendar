@@ -101,4 +101,29 @@ describe('FullCalendar', () => {
       screen.unmount();
     }
   });
+
+  it('customizes the built-in header and can hide the view switcher', () => {
+    const screen = render(
+      <FullCalendar
+        events={[]}
+        date="2026-09-30"
+        view="week"
+        timeZone="Asia/Karachi"
+        onDateChange={jest.fn()}
+        startHour={8}
+        endHour={9}
+        header={{
+          previousIcon: 'Back',
+          nextIcon: 'Forward',
+          previousAccessibilityLabel: 'Earlier dates',
+          nextAccessibilityLabel: 'Later dates',
+          showViewSwitcher: false,
+        }}
+      />
+    );
+
+    expect(screen.getByLabelText('Earlier dates')).toHaveTextContent('Back');
+    expect(screen.getByLabelText('Later dates')).toHaveTextContent('Forward');
+    expect(screen.queryByRole('tab')).toBeNull();
+  });
 });

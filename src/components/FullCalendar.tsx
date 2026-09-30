@@ -49,6 +49,8 @@ export function FullCalendar<T extends object = Record<string, unknown>>({
   visibleDays = 7,
   scrollToTime,
   theme: themeOverride,
+  styles: calendarStyles = {},
+  header,
   renderEvent,
   renderHeader,
   dateFormat = DEFAULT_DATE_FORMAT,
@@ -108,7 +110,12 @@ export function FullCalendar<T extends object = Record<string, unknown>>({
   return (
     <View
       testID={testID}
-      style={[styles.container, { backgroundColor: theme.background }, style]}
+      style={[
+        styles.container,
+        { backgroundColor: theme.background },
+        calendarStyles.container,
+        style,
+      ]}
     >
       <CalendarHeader
         label={label}
@@ -118,11 +125,16 @@ export function FullCalendar<T extends object = Record<string, unknown>>({
         view={view}
         setView={(next) => onViewChange?.(next)}
         theme={theme}
+        config={header}
+        calendarStyles={calendarStyles}
         renderHeader={renderHeader}
       />
       <ScrollView
         key={`${date}:${view}:${scrollY}`}
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[
+          styles.scrollContent,
+          calendarStyles.scrollContent,
+        ]}
         contentOffset={{ x: 0, y: scrollY }}
         nestedScrollEnabled
       >
@@ -136,6 +148,7 @@ export function FullCalendar<T extends object = Record<string, unknown>>({
           slotDurationMinutes={slotDurationMinutes}
           hourHeight={hourHeight}
           theme={theme}
+          calendarStyles={calendarStyles}
           dateFormat={dateFormat}
           timeFormat={timeFormat}
           renderEvent={renderEvent}

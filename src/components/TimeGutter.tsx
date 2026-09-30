@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 import { formatInstant } from '../core/dates';
 import { getDayWindow } from '../core/eventLayout';
-import type { CalendarTheme } from '../types';
+import type { CalendarStyles, CalendarTheme } from '../types';
 
 export const GUTTER_WIDTH = 60;
 
@@ -14,6 +14,7 @@ export function TimeGutter({
   hourHeight,
   timeFormat,
   theme,
+  calendarStyles,
 }: {
   day: string;
   timeZone: string;
@@ -23,6 +24,7 @@ export function TimeGutter({
   hourHeight: number;
   timeFormat: Intl.DateTimeFormatOptions;
   theme: CalendarTheme;
+  calendarStyles: CalendarStyles;
 }) {
   const window = getDayWindow(day, timeZone, startHour, endHour, hourHeight);
   return (
@@ -30,6 +32,7 @@ export function TimeGutter({
       style={[
         styles.gutter,
         { height: window.height, backgroundColor: theme.background },
+        calendarStyles.timeGutter,
       ]}
     >
       {Array.from(
@@ -51,6 +54,7 @@ export function TimeGutter({
               style={[
                 styles.label,
                 { color: theme.secondaryText, top: Math.max(0, top - 8) },
+                calendarStyles.timeLabel,
               ]}
             >
               {formatInstant(instant, locale, timeZone, timeFormat)}

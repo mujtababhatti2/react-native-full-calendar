@@ -1,5 +1,5 @@
 import type { ReactElement, ReactNode } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
+import type { StyleProp, TextStyle, ViewStyle } from 'react-native';
 
 export type CalendarView = 'day' | 'week';
 export type VisibleDays = 1 | 3 | 7;
@@ -49,6 +49,45 @@ export type HeaderRenderInfo = {
   setView: (view: CalendarView) => void;
 };
 
+export type CalendarHeaderConfig = {
+  previousIcon?: ReactNode;
+  nextIcon?: ReactNode;
+  previousAccessibilityLabel?: string;
+  nextAccessibilityLabel?: string;
+  todayAccessibilityLabel?: string;
+  dayLabel?: string;
+  weekLabel?: string;
+  showViewSwitcher?: boolean;
+  renderTitle?: (info: HeaderRenderInfo) => ReactNode;
+};
+
+export type CalendarStyles = {
+  container?: StyleProp<ViewStyle>;
+  header?: StyleProp<ViewStyle>;
+  headerNavigation?: StyleProp<ViewStyle>;
+  headerButton?: StyleProp<ViewStyle>;
+  headerButtonText?: StyleProp<TextStyle>;
+  headerTitleButton?: StyleProp<ViewStyle>;
+  headerTitle?: StyleProp<TextStyle>;
+  viewSwitcher?: StyleProp<ViewStyle>;
+  viewButton?: StyleProp<ViewStyle>;
+  selectedViewButton?: StyleProp<ViewStyle>;
+  viewButtonText?: StyleProp<TextStyle>;
+  selectedViewButtonText?: StyleProp<TextStyle>;
+  scrollContent?: StyleProp<ViewStyle>;
+  dayHeaderRow?: StyleProp<ViewStyle>;
+  dayHeader?: StyleProp<ViewStyle>;
+  todayHeader?: StyleProp<ViewStyle>;
+  dayHeaderText?: StyleProp<TextStyle>;
+  todayHeaderText?: StyleProp<TextStyle>;
+  timeGutter?: StyleProp<ViewStyle>;
+  timeLabel?: StyleProp<TextStyle>;
+  dayColumn?: StyleProp<ViewStyle>;
+  event?: StyleProp<ViewStyle>;
+  eventText?: StyleProp<TextStyle>;
+  emptyState?: StyleProp<ViewStyle>;
+};
+
 export type FullCalendarProps<T extends object = Record<string, unknown>> = {
   events: readonly CalendarEvent<T>[];
   date: string;
@@ -67,6 +106,8 @@ export type FullCalendarProps<T extends object = Record<string, unknown>> = {
   visibleDays?: VisibleDays;
   scrollToTime?: string;
   theme?: Partial<CalendarTheme>;
+  styles?: CalendarStyles;
+  header?: CalendarHeaderConfig;
   renderEvent?: (info: EventRenderInfo<T>) => ReactElement | null;
   renderHeader?: (info: HeaderRenderInfo) => ReactElement | null;
   dateFormat?: Intl.DateTimeFormatOptions;

@@ -7,6 +7,7 @@ import type { ValidatedEvent } from '../core/validation';
 import type {
   CalendarEvent,
   CalendarSlot,
+  CalendarStyles,
   CalendarTheme,
   EventRenderInfo,
 } from '../types';
@@ -24,6 +25,7 @@ export function TimeGrid<T extends object>({
   slotDurationMinutes,
   hourHeight,
   theme,
+  calendarStyles,
   dateFormat,
   timeFormat,
   renderEvent,
@@ -40,6 +42,7 @@ export function TimeGrid<T extends object>({
   slotDurationMinutes: number;
   hourHeight: number;
   theme: CalendarTheme;
+  calendarStyles: CalendarStyles;
   dateFormat: Intl.DateTimeFormatOptions;
   timeFormat: Intl.DateTimeFormatOptions;
   renderEvent?: (info: EventRenderInfo<T>) => React.ReactElement | null;
@@ -67,6 +70,7 @@ export function TimeGrid<T extends object>({
           },
           I18nManager.isRTL ? styles.rtlHeaderSpacer : styles.ltrHeaderSpacer,
           I18nManager.isRTL && styles.rowReverse,
+          calendarStyles.dayHeaderRow,
         ]}
       >
         {dates.map((day) => {
@@ -81,6 +85,8 @@ export function TimeGrid<T extends object>({
                 styles.dayHeader,
                 { width: dayWidth },
                 selected && { backgroundColor: theme.todayBackground },
+                calendarStyles.dayHeader,
+                selected && calendarStyles.todayHeader,
               ]}
             >
               <Text
@@ -89,6 +95,8 @@ export function TimeGrid<T extends object>({
                 style={[
                   styles.dayHeaderText,
                   { color: selected ? theme.primary : theme.text },
+                  calendarStyles.dayHeaderText,
+                  selected && calendarStyles.todayHeaderText,
                 ]}
               >
                 {formatInstant(noon, locale, timeZone, dateFormat)}
@@ -107,6 +115,7 @@ export function TimeGrid<T extends object>({
           hourHeight={hourHeight}
           timeFormat={timeFormat}
           theme={theme}
+          calendarStyles={calendarStyles}
         />
         <View style={[styles.days, I18nManager.isRTL && styles.rowReverse]}>
           {dates.map((day) => (
@@ -123,13 +132,17 @@ export function TimeGrid<T extends object>({
               hourHeight={hourHeight}
               timeFormat={timeFormat}
               theme={theme}
+              calendarStyles={calendarStyles}
               renderEvent={renderEvent}
               onEventPress={onEventPress}
               onSlotPress={onSlotPress}
             />
           ))}
           {!hasEvents && emptyState ? (
-            <View pointerEvents="none" style={styles.empty}>
+            <View
+              pointerEvents="none"
+              style={[styles.empty, calendarStyles.emptyState]}
+            >
               {emptyState}
             </View>
           ) : null}
@@ -151,6 +164,7 @@ function DayColumn<T extends object>({
   hourHeight,
   timeFormat,
   theme,
+  calendarStyles,
   renderEvent,
   onEventPress,
   onSlotPress,
@@ -166,6 +180,7 @@ function DayColumn<T extends object>({
   hourHeight: number;
   timeFormat: Intl.DateTimeFormatOptions;
   theme: CalendarTheme;
+  calendarStyles: CalendarStyles;
   renderEvent?: (info: EventRenderInfo<T>) => React.ReactElement | null;
   onEventPress?: (event: CalendarEvent<T>) => void;
   onSlotPress?: (slot: CalendarSlot) => void;
@@ -190,6 +205,7 @@ function DayColumn<T extends object>({
       style={[
         styles.column,
         { borderLeftColor: theme.gridLine, height: window.height, width },
+        calendarStyles.dayColumn,
       ]}
     >
       {Array.from(
@@ -243,6 +259,7 @@ function DayColumn<T extends object>({
           timeZone={timeZone}
           timeFormat={timeFormat}
           theme={theme}
+          calendarStyles={calendarStyles}
           renderEvent={renderEvent}
           onPress={onEventPress ? () => onEventPress(segment.event) : undefined}
         />

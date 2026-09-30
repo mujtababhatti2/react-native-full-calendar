@@ -1,4 +1,4 @@
-# @mujtababhatti2/react-native-full-calendar
+# react-native-full-calendar
 
 A controlled, timezone-aware day and week calendar for React Native. The beta supports Android and iOS, timed events, overlap layout, compact week ranges, slot and event presses, themes, and custom renderers. It contains no native module and works in Expo and bare React Native CLI apps.
 
@@ -88,6 +88,8 @@ The calendar is controlled: it never changes `date`, `view`, or `events` interna
 | `onEventPress`              | —                  | Receives the original event, including custom fields             |
 | `onSlotPress`               | —                  | Receives an exclusive ISO instant interval                       |
 | `theme`                     | system light/dark  | Partial `CalendarTheme` override                                 |
+| `header`                    | built-in defaults  | Icons, labels, title renderer, and view-switcher visibility      |
+| `styles`                    | built-in styles    | Named style overrides for the header, grid, gutter, and events   |
 | `renderEvent`               | built-in card      | Custom event content rendered inside the positioned card         |
 | `renderHeader`              | built-in header    | Custom navigation and view header                                |
 | `emptyState`                | `No events`        | Content shown when the visible range has no timed events         |
@@ -108,6 +110,19 @@ Events intersecting the visible interval are included and clipped to its day and
 <FullCalendar
   {...props}
   theme={{ primary: '#4F46E5', gridLine: '#E5E7EB' }}
+  header={{
+    previousIcon: '←',
+    nextIcon: '→',
+    dayLabel: 'Daily',
+    weekLabel: 'Schedule',
+  }}
+  styles={{
+    header: { borderBottomWidth: 1, borderBottomColor: '#E5E7EB' },
+    headerTitle: { fontSize: 20 },
+    dayHeader: { minHeight: 56 },
+    event: { borderRadius: 10, padding: 6 },
+    eventText: { fontSize: 13 },
+  }}
   renderEvent={({ event, startsBefore, endsAfter }) => (
     <AppointmentCard event={event} continued={startsBefore || endsAfter} />
   )}
@@ -116,6 +131,13 @@ Events intersecting the visible interval are included and clipped to its day and
   )}
 />
 ```
+
+Set `header.showViewSwitcher` to `false` to hide the built-in day/week
+switcher, or use `header.renderTitle` to replace only the title. Use
+`renderHeader` when the whole header should be replaced. The `styles` prop
+supports container, header, navigation, view-button, day-header, time-gutter,
+day-column, event, and empty-state style slots; `theme` remains the simplest
+way to change calendar colors.
 
 Built-in events expose useful screen-reader labels, text scaling limits, and button roles. Headers and day columns mirror when React Native's RTL setting is enabled. Custom renderers are responsible for the accessibility of their own content, while the surrounding event button retains its generated label.
 

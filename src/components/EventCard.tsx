@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { formatInstant } from '../core/dates';
 import type { EventSegment } from '../core/eventLayout';
-import type { CalendarTheme, EventRenderInfo } from '../types';
+import type { CalendarStyles, CalendarTheme, EventRenderInfo } from '../types';
 
 export function EventCard<T extends object>({
   segment,
@@ -9,6 +9,7 @@ export function EventCard<T extends object>({
   timeZone,
   timeFormat,
   theme,
+  calendarStyles,
   renderEvent,
   onPress,
 }: {
@@ -17,6 +18,7 @@ export function EventCard<T extends object>({
   timeZone: string;
   timeFormat: Intl.DateTimeFormatOptions;
   theme: CalendarTheme;
+  calendarStyles: CalendarStyles;
   renderEvent?: (info: EventRenderInfo<T>) => React.ReactElement | null;
   onPress?: () => void;
 }) {
@@ -43,6 +45,7 @@ export function EventCard<T extends object>({
           top: segment.top,
           width,
         },
+        calendarStyles.event,
       ]}
     >
       {renderEvent ? (
@@ -55,7 +58,11 @@ export function EventCard<T extends object>({
         <Text
           maxFontSizeMultiplier={1.4}
           numberOfLines={segment.height < 38 ? 1 : 2}
-          style={[styles.text, { color: theme.eventText }]}
+          style={[
+            styles.text,
+            { color: theme.eventText },
+            calendarStyles.eventText,
+          ]}
         >
           {segment.event.title}
         </Text>
