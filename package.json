@@ -30,7 +30,8 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "test": "jest --runInBand",
-    "release:beta": "npm publish --tag beta --access public"
+    "release:beta": "npm publish --tag beta --access public",
+    "release:dev": "npm publish --tag dev --access public"
   },
   "keywords": [
     "react-native",

@@ -141,6 +141,32 @@ way to change calendar colors.
 
 Built-in events expose useful screen-reader labels, text scaling limits, and button roles. Headers and day columns mirror when React Native's RTL setting is enabled. Custom renderers are responsible for the accessibility of their own content, while the surrounding event button retains its generated label.
 
+## Release channels
+
+The stable package remains on npm's default `latest` tag. Beta and development
+builds use separate dist-tags, so publishing either prerelease does not replace
+the stable version selected by an unqualified install.
+
+```sh
+# Stable (the default release)
+npm install @mujtababhatti2/react-native-full-calendar
+
+# Latest beta
+npm install @mujtababhatti2/react-native-full-calendar@beta
+
+# Latest development build
+npm install @mujtababhatti2/react-native-full-calendar@dev
+```
+
+Every push to `main` publishes a unique `-dev.<run-id>` version under the `dev`
+tag after CI passes. To publish a beta, set `package.json` to a version ending in
+`-beta.<number>` and push the matching `v<version>` Git tag. Published versions
+remain installable by their exact version and visible in npm's Versions list,
+even after the `beta` or `dev` tag advances.
+
+Both prerelease jobs publish with an explicit npm dist-tag. Stable releases must
+be published separately with the `latest` tag.
+
 ## Beta limitations
 
 This release supports timed day and week views on Android and iOS. Month, agenda, all-day rows, drag and resize, swipe navigation, recurring-event expansion, resources, availability overlays, booking rules, and React Native Web are planned separately.
