@@ -1,7 +1,7 @@
 {
   "name": "@mujtababhatti2/react-native-full-calendar",
   "version": "0.1.0",
-  "description": "A customizable, timezone-aware day and week calendar for React Native",
+  "description": "A customizable React Native calendar library for Android and iOS with TypeScript, timezone-aware day and week views, timed events, and scheduling callbacks.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -36,7 +36,14 @@
   "keywords": [
     "react-native",
     "calendar",
-    "schedule",
+    "full-calendar",
+    "event-calendar",
+    "scheduling",
+    "appointments",
+    "typescript",
+    "timezone",
+    "day-view",
+    "week-view",
     "ios",
     "android"
   ],
