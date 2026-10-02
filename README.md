@@ -1,6 +1,8 @@
 # React Native Full Calendar
 
-A React Native calendar library for displaying timed events in controlled, timezone-aware day and week views. This React Native full calendar provides a typed `FullCalendar` component with overlapping event layout, press callbacks, and custom themes and renderers.
+`@mujtababhatti2/react-native-full-calendar` is a React Native calendar component for displaying timed events in controlled, timezone-aware day and week views on Android and iOS. Its typed `FullCalendar` component supports overlapping event layout, event and time-slot press callbacks, and custom themes and renderers.
+
+[npm package](https://www.npmjs.com/package/@mujtababhatti2/react-native-full-calendar) · [GitHub repository](https://github.com/mujtababhatti2/react-native-full-calendar) · [Report an issue](https://github.com/mujtababhatti2/react-native-full-calendar/issues)
 
 ## Supported Features and Use Cases
 
@@ -42,6 +44,7 @@ This React Native TypeScript calendar example renders a three-day appointment sc
 
 ```tsx
 import { useState } from 'react';
+import { View } from 'react-native';
 import {
   FullCalendar,
   type CalendarEvent,
@@ -65,20 +68,22 @@ export function Schedule() {
   const [view, setView] = useState<CalendarView>('week');
 
   return (
-    <FullCalendar<Appointment>
-      events={events}
-      date={date}
-      view={view}
-      timeZone="Asia/Karachi"
-      firstDayOfWeek={1}
-      visibleDays={3}
-      startHour={8}
-      endHour={20}
-      onDateChange={setDate}
-      onViewChange={setView}
-      onEventPress={(event) => console.log(event.patientId)}
-      onSlotPress={(slot) => console.log(slot.start, slot.end)}
-    />
+    <View style={{ flex: 1 }}>
+      <FullCalendar<Appointment>
+        events={events}
+        date={date}
+        view={view}
+        timeZone="Asia/Karachi"
+        firstDayOfWeek={1}
+        visibleDays={3}
+        startHour={8}
+        endHour={20}
+        onDateChange={setDate}
+        onViewChange={setView}
+        onEventPress={(event) => console.log(event.patientId)}
+        onSlotPress={(slot) => console.log(slot.start, slot.end)}
+      />
+    </View>
   );
 }
 ```
@@ -207,8 +212,13 @@ An unqualified install selects npm's `latest` tag. The repository configures sep
 ```sh
 # Stable (the default release)
 npm install @mujtababhatti2/react-native-full-calendar
+
+# Prerelease channels (when available)
+npm install @mujtababhatti2/react-native-full-calendar@beta
+npm install @mujtababhatti2/react-native-full-calendar@dev
 ```
 
+The GitHub Actions workflow publishes a unique development version after validation on pushes to `main`. Beta releases require a `v<version>-beta.<number>` tag matching `package.json`. There is no automatic stable publishing job; stable releases must be published separately to `latest`.
 
 ## Current Limitations
 
