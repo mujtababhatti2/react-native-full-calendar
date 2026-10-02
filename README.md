@@ -207,22 +207,8 @@ An unqualified install selects npm's `latest` tag. The repository configures sep
 ```sh
 # Stable (the default release)
 npm install @mujtababhatti2/react-native-full-calendar
-
-# Latest beta
-npm install @mujtababhatti2/react-native-full-calendar@beta
-
-# Latest development build
-npm install @mujtababhatti2/react-native-full-calendar@dev
 ```
 
-Every push to `main` publishes a unique `-dev.<run-id>` version under the `dev`
-tag after CI passes. To publish a beta, set `package.json` to a version ending in
-`-beta.<number>` and push the matching `v<version>` Git tag. Published versions
-remain installable by their exact version and visible in npm's Versions list,
-even after the `beta` or `dev` tag advances.
-
-Both prerelease jobs publish with an explicit npm dist-tag. Stable releases must
-be published separately with the `latest` tag.
 
 ## Current Limitations
 
